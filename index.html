@@ -41,6 +41,21 @@
         };
         firebase.initializeApp(config);
     </script>
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        loadTweets();
+    });
+function loadTweets(){
+   var database = firebase.database().ref();
+
+    database.on('child_added', function(dataRow){
+   var row = dataRow.val();
+   $("#feed").append("<p><b>" + row.name + "</b> says " + row.message + "</p>");
+})
+}
+</script>
     <script src="main.js"></script>
 
 </body>
