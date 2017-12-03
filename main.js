@@ -1,6 +1,5 @@
 var database = firebase.database().ref();
 
-
 function sendChat() {
     var name = $("#name").val();
     var message = $("#message").val();

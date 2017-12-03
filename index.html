@@ -3,60 +3,60 @@
 <html lang="en">
 
 <head>
-    <title>EagleTweet</title>
+  <title>EagleTweet</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="main.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
 
-<h1 align="center">EagleTweet</h1>
+  <h1 align="center">EagleTweet</h1>
 
 
-    <div class="container">
-        <p id="feed" align="center"></p>
-        <input placeholder="Name" type="text" id="name">
-        <br />
-        <input placeholder="Message" type="text" id="message">
-        <br>
-        <button id="submit" onclick="sendChat()">Send</button>
-
-    </div>
-
+  <div class="container">
+      <p id="feed" align="center"></p>
+      <input placeholder="Name" type="text" id="name">
+      <br />
+      <input placeholder="Message" type="text" id="message">
+      <br>
+      <button id="submit" onclick="sendChat()">Send</button>
+  </div>
 
 
-    <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyCwDZNc9VpNHsGzXrtDMzz4YxS-IGz7Ewo",
-            authDomain: "hack-the-heights.firebaseapp.com",
-            databaseURL: "https://hack-the-heights.firebaseio.com",
-            projectId: "hack-the-heights",
-            storageBucket: "hack-the-heights.appspot.com",
-            messagingSenderId: "35497349786"
-        };
-        firebase.initializeApp(config);
-    </script>
 
-    <script type="text/javascript">
+  <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCwDZNc9VpNHsGzXrtDMzz4YxS-IGz7Ewo",
+      authDomain: "hack-the-heights.firebaseapp.com",
+      databaseURL: "https://hack-the-heights.firebaseio.com",
+      projectId: "hack-the-heights",
+      storageBucket: "hack-the-heights.appspot.com",
+      messagingSenderId: "35497349786"
+    };
+    firebase.initializeApp(config);
+  </script>
 
-    $(document).ready(function () {
-        loadTweets();
+  <script type="text/javascript">
+    $(document).ready(function() {
+      loadTweets();
     });
-function loadTweets(){
-   var database = firebase.database().ref();
 
-    database.on('child_added', function(dataRow){
-   var row = dataRow.val();
-   $("#feed").append("<p><b>" + row.name + "</b> says " + row.message + "</p>");
-})
-}
-</script>
-    <script src="main.js"></script>
+    function loadTweets() {
+      var database = firebase.database().ref();
+
+      database.on('child_added', function(dataRow) {
+        var row = dataRow.val();
+        $("#feed").empty()
+        $("#feed").append("<p><b>" + row.name + "</b> says " + row.message + "</p>");
+      })
+    }
+  </script>
+  <script src="main.js"></script>
 
 </body>
 
